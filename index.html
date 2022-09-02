@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dhaka Tribune</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -22,21 +23,39 @@
    <main>
     <!-- news category section start -->
     <section class="container">
-        <div class="d-flex justify-content-evenly mt-4 fs-6">
+        <div id="category-container" class="d-flex mt-4 justify-content-evenly">
             <a class="nav-link text-secondary fw-bold" href="#">Home</a>
-            <a class="nav-link text-secondary fw-bold" href="#">Breaking news</a>
-            <a class="nav-link text-secondary fw-bold" href="#">Regular news</a>
-            <a class="nav-link text-secondary fw-bold" href="#">International news</a>
-            <a class="nav-link text-secondary fw-bold" href="#">Sports</a>
-            <a class="nav-link text-secondary fw-bold" href="#">Entertainment</a>
-            <a class="nav-link text-secondary fw-bold" href="#">Culture</a>
-            <a class="nav-link text-secondary fw-bold" href="#">Arts</a>
-            <a class="nav-link text-secondary fw-bold" href="#">All news </a>
+
         </div>
     </section>
      <!-- news category section end -->
+     <!-- news publish section start -->
+     <section class="container">
+        <div id="news-container">
+            
+            
+        </div>
+     </section>
+     <!-- news publish section end-->
    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="news.js"></script>
 </body>
 </html>
+
+
+<!-- 
+categories.forEach(category => {
+    console.log(category);
+    categoryDiv.innerHTML = `
+    <a class="nav-link text-secondary fw-bold" href="#">Home</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    <a class="nav-link text-secondary fw-bold" href="#">${category.category_name}</a>
+    `;
+}; -->
