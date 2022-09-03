@@ -28,6 +28,8 @@
  const categoryNewsLoad =  async category_id => {
     const url =  `https://openapi.programming-hero.com/api/news/category/${category_id}`;
     try{
+        //start toggle spinner
+        toggleSpinner(true);
         const res = await fetch(url);
         const data = await res.json();
       displayCategoryNews(data.data);
@@ -35,11 +37,14 @@
     catch(error){
         console.log(error);
     }
+  
  }
  categoryNewsLoad();
  const displayCategoryNews = displayNews =>{
+   
     // console.log(displayNews);
      const newsContainer = document.getElementById('news-container');
+     newsContainer.innerHTML = '';
      
      displayNews.forEach( news => {
          console.log(news);
@@ -52,7 +57,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="card-body">
-                      <h5 class="card-title">${news.title ? news.title : 'No Title Found'}</h5>
+                      <h5 class="card-title fs-4">${news.title ? news.title : 'No Title Found'}</h5>
                       <p class="card-text text-overflow">${news.details}</p>
                     </div>
                     <div class="d-flex justify-content-between mt-4">
@@ -64,7 +69,8 @@
                             </div>
                         </div>
 
-                        <div class="mt-3">
+                        <div class="mt-3 d-flex">
+                        <i class="fa-regular fa-eye mt-1 mx-3"></i>
                           <h5>${news.total_view ? news.total_view : '00'}M</h5>
                         </div>
 
@@ -77,6 +83,18 @@
         </div>
         `;
         newsContainer.appendChild(newsDiv);
-     })
-    
+        //stop toggle spinner
+        toggleSpinner(false);
+     })   
+}
+
+const toggleSpinner  = isLoading => {
+    const loaderSpinner = document.getElementById('loader');
+    if(isLoading)
+    {
+            loaderSpinner.classList.remove('d-none');
+    }
+    else{
+        loaderSpinner.classList.add('d-none');
+    }
 }
