@@ -40,7 +40,6 @@
   
  }
  const displayCategoryNews = displayNews =>{
-
     //total news found list
     const categoryFound = document.getElementById('news-found');
     categoryFound.innerHTML = '';
@@ -55,43 +54,43 @@
     //   console.log(displayNews);
      const newsContainer = document.getElementById('news-container');
      newsContainer.innerHTML = '';
+
+     displayNews.sort((a,b) => {
+        return b.total_view - a.total_view;
+     });
+
+     console.log(displayNews);
      
      displayNews.forEach( news => {
     //    console.log(news);
         const newsDiv = document.createElement('div');
-        
-        newsDiv.innerHTML = `
-        <div class="card mb-3 mt-5 p-3 shadow p-3 mb-5 bg-body rounded">
-            <div class="row g-0">
-                <div class="col-lg-3">
-                    <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-lg-9">
-                    <div class="card-body">
-                      <h5 class="card-title fs-4">${news.title ? news.title : 'No Title Found'}</h5>
-                      <p class="card-text text-overflow">${news.details}</p>
-                    </div>
-                    <div class="d-flex justify-content-between mt-4">
-                        <div class="image d-flex">
-                            <img src="${news.author.img ? news.author.img : 'No Title Found'}" class="img-fluid rounded-circle" alt="...">
+        newsDiv.innerHTML = ` 
+              <div class="card h-100 shadow rounded">
+                    <img src="${news.image_url}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title cardTitle">${news.title ? news.title : 'No Title Found'}</h5>
+                    <p class="card-text">${news.details.slice(0,200)}...</p>
+                    <div class="d-flex justify-content-between">
+
+                        <div class='d-flex pt-2 image'>
+                            <img src="${news.author.img ? news.author.img : 'No Img Found'}" class="img-fluid rounded-circle" alt="...">
                             <div>
-                            <p class="card-title fw-bold mx-3">${news.author.name ? news.author.name : 'No Details Found'}</p>
-                            <p class="card-title fw-bold mx-3">${news.author.published_date ? news.author.published_date : 'No Date Found'}</p>
+                            <p class='ms-2 fw-bold'>${news.author.name ? news.author.name : 'No Details Found'} <br>${news.author.published_date ? news.author.published_date : 'No Date Found'}</p>
                             </div>
+                        </div >
+
+                        <div class="mt-4 d-flex">
+                            <i class="fa-regular fa-eye mt-1 mx-2"></i>
+                            <h6 class="">${news.total_view ? news.total_view : '00'}M</h6>
                         </div>
 
-                        <div class="mt-3 d-flex">
-                        <i class="fa-regular fa-eye mt-1 mx-3"></i>
-                          <h5>${news.total_view ? news.total_view : '00'}M</h5>
+                        <div class="mt-2">
+                            <button class='btn btn-primary' style="height:50px;" onclick="loadModalNews('${news._id}')" data-bs-toggle="modal"  data-bs-target="#exampleModal">More Info</button>
                         </div>
 
-                        <div class="mt-3">
-                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick ="loadModalNews('${news._id}')">More Info </button>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> 
+             </div>
         `;
         newsContainer.appendChild(newsDiv);
         //stop toggle spinner
@@ -122,7 +121,6 @@ const loadModalNews = async news_id =>  {
         console.log(error);
     }
 }
-// loadModalNews();
 
 const displayModal = modalDetails => {
     console.log(modalDetails);
