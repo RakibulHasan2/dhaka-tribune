@@ -1,0 +1,12 @@
+.text-overflow{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* border: 1px solid blue; */
+    /* white-space: nowrap; */
+    width:800px;
+    height: 140px;
+}
+.image img{
+    width: 60px;
+    height: 60px;
+}
