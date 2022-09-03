@@ -39,16 +39,27 @@
     }
   
  }
- categoryNewsLoad();
  const displayCategoryNews = displayNews =>{
-   
-    // console.log(displayNews);
+
+    //total news found list
+    const categoryFound = document.getElementById('news-found');
+    categoryFound.innerHTML = '';
+    const categoryH3 = document.createElement('h3');
+    categoryH3.innerHTML = `Total ${displayNews.length ? displayNews.length : 'No'} News Founded`;
+    categoryFound.appendChild(categoryH3);
+
+    // //sorting array 
+    // const sortedArrayNews = displayNews.sort();
+    // console.log(sortedArrayNews);
+
+    //   console.log(displayNews);
      const newsContainer = document.getElementById('news-container');
      newsContainer.innerHTML = '';
      
      displayNews.forEach( news => {
-         console.log(news);
+    //    console.log(news);
         const newsDiv = document.createElement('div');
+        
         newsDiv.innerHTML = `
         <div class="card mb-3 mt-5 p-3 shadow p-3 mb-5 bg-body rounded">
             <div class="row g-0">
@@ -75,7 +86,7 @@
                         </div>
 
                         <div class="mt-3">
-                          <button class="btn btn-primary">More Info </button>
+                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick ="loadModalNews('${news._id}')">More Info </button>
                         </div>
                     </div>
                 </div>
@@ -88,6 +99,7 @@
      })   
 }
 
+//adding toggle spinner
 const toggleSpinner  = isLoading => {
     const loaderSpinner = document.getElementById('loader');
     if(isLoading)
@@ -98,3 +110,30 @@ const toggleSpinner  = isLoading => {
         loaderSpinner.classList.add('d-none');
     }
 }
+
+const loadModalNews = async news_id =>  {
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayModal(data.data[0]);
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+// loadModalNews();
+
+const displayModal = modalDetails => {
+    console.log(modalDetails);
+    const modalTitle = document.getElementById('exampleModalLabel');
+     modalTitle.innerText = modalDetails.author.name;
+     const modalInfo = document.getElementById('modal-details');
+     modalInfo.innerHTML = `
+     <p> Release Date : ${modalDetails.author.published_date ? modalDetails.author.published_date : 'No Release Date Found'} </p>
+     <p> Total Views : ${modalDetails.total_view ? modalDetails.total_view : 'No Views Found'} </p>
+     <p> Rating : ${modalDetails.rating.number ? modalDetails.rating.number : 'No Ratings Found'} </p>
+     <p> Badge : ${modalDetails.rating.badge ? modalDetails.rating.badge : 'No Badge Found'} </p>
+     `;
+}
+

@@ -23,7 +23,7 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-light">
     <!-- header section starts -->
    <header class="container border border-start-0 border-top-0 border-end-0 border-secondary">
     <div class="d-flex justify-content-between">
@@ -39,11 +39,19 @@
     <!-- news category section start -->
     <section class="container">
         <div id="category-container" class="d-flex mt-4 justify-content-evenly">
-            <a class="nav-link text-secondary fw-bold" href="#">Home</a>
+            <a class="nav-link text-secondary fw-bold" href="#" onclick ="categoryNewsLoad('08')">Home</a>
 
         </div>
     </section>
      <!-- news category section end -->
+
+     <!-- total news found section start -->
+     <section class="container">
+        <div id="news-found" class="border mt-4 p-3 bg-white">
+           
+        </div>
+     </section>
+      <!-- total news found section end -->
 
       <!--start loader -->
       <section id="loader" class="mt-4 container d-none">
@@ -54,7 +62,7 @@
           </div>
     </section>
     <!-- stop loader -->
-    
+
      <!-- news publish section start -->
      <section class="container">
         <div id="news-container">
@@ -63,6 +71,29 @@
         </div>
      </section>
      <!-- news publish section end-->
+
+      <!-- modal section start -->
+      <section class="container">
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel"></h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body" id="modal-details">
+              
+             </div>
+             <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+             </div>
+          </div>
+      </div>
+  </div>
+     </section>
+     <!-- modal section end-->
    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
